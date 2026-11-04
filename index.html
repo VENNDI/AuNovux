@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AU NOVUX — Aura Ring</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap">
+<style>
+:root{--bg:#070707;--bg2:#0f0e0c;--card:#14120f;--line:#2a2418;--gold:#d4af37;--gold2:#f3dc8a;--txt:#f1ebdd;--mut:#9b927e;--g:#c9a24a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px;background:var(--bg)}
+body{background:var(--bg);color:var(--txt);font:300 16px/1.65 Inter,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.1}
+.gold{background:linear-gradient(100deg,#9c7a1f,var(--gold2) 45%,var(--gold) 70%,#8a6a18);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top,0px)) 5vw 14px;background:rgba(7,7,7,.72);backdrop-filter:blur(14px);border-bottom:1px solid #1d1a12}
+.logo{font:600 22px 'Cormorant Garamond',serif;letter-spacing:.32em}
+nav ul{display:flex;gap:28px;list-style:none;padding:0}
+nav a{color:var(--mut);text-decoration:none;font-size:13px;letter-spacing:.14em;text-transform:uppercase;transition:.25s}
+nav a:hover{color:var(--gold2)}
+.btn{display:inline-block;padding:14px 34px;border:1px solid var(--gold);color:var(--bg);background:linear-gradient(120deg,#b8922c,var(--gold2),#b8922c);font:500 12px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;cursor:pointer;border-radius:2px;transition:.3s}
+.btn:hover{box-shadow:0 0 34px rgba(212,175,55,.45);transform:translateY(-2px)}
+.btn.o{background:none;color:var(--gold2)}
+section{padding:110px 6vw;max-width:1240px;margin:auto}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:.34em;text-transform:uppercase;margin-bottom:16px}
+h2{font-size:clamp(34px,5vw,58px);margin-bottom:20px}
+.lead{color:var(--mut);max-width:560px}
+#hero{max-width:none;padding:0;min-height:100vh;position:relative;display:grid;grid-template-columns:1fr 1.1fr;align-items:center;background:radial-gradient(60% 60% at 70% 50%,#2a210b 0,transparent 70%),var(--bg)}
+.hero-t{padding:120px 3vw 60px 6vw;z-index:2}
+.hero-t h1{font-size:clamp(46px,7vw,92px);margin-bottom:22px}
+.hero-t p{color:var(--mut);max-width:460px;margin-bottom:34px}
+.hero-t .btn+.btn{margin-left:12px}
+#stage{position:relative;height:100vh;min-height:520px;cursor:grab;touch-action:pan-y}
+#stage:active{cursor:grabbing}
+#stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.hint{position:absolute;bottom:34px;left:0;right:0;text-align:center;font-size:11px;letter-spacing:.3em;color:var(--mut);text-transform:uppercase;pointer-events:none}
+.stats{display:flex;gap:44px;margin-top:46px;flex-wrap:wrap}
+.stats b{display:block;font:500 34px 'Cormorant Garamond',serif;color:var(--gold2)}
+.stats span{font-size:12px;color:var(--mut);letter-spacing:.12em;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;margin-top:54px}
+.card{background:linear-gradient(160deg,var(--card),#0b0a08);border:1px solid var(--line);padding:34px 28px;border-radius:4px;transition:.35s}
+.card:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 18px 50px rgba(212,175,55,.08)}
+.card svg{width:46px;height:46px;stroke:var(--gold);fill:none;stroke-width:1.3;margin-bottom:22px}
+.card h3{font-size:26px;margin-bottom:10px}
+.card p{color:var(--mut);font-size:14.5px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.phone{width:min(300px,100%);margin:auto;border:1px solid var(--gold);border-radius:42px;padding:12px;background:#000;box-shadow:0 0 80px rgba(212,175,55,.14)}
+.screen{border-radius:32px;background:linear-gradient(180deg,#17130a,#0a0908);padding:26px 20px;min-height:540px}
+.screen small{color:var(--mut);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.ringc{display:flex;justify-content:center;margin:18px 0}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini div{background:#1a160d;border:1px solid var(--line);border-radius:14px;padding:12px}
+.mini b{display:block;font:500 22px 'Cormorant Garamond',serif;color:var(--gold2)}
+.mini em{font-style:normal;font-size:11px;color:var(--mut)}
+.tabs{display:flex;gap:10px;margin:28px 0 14px;flex-wrap:wrap}
+.tabs button{background:none;border:1px solid var(--line);color:var(--mut);padding:9px 18px;border-radius:30px;cursor:pointer;font:400 12px Inter;letter-spacing:.12em;text-transform:uppercase;transition:.25s}
+.tabs button.on{border-color:var(--gold);color:var(--gold2);background:#1a150a}
+#tabtxt{color:var(--mut);max-width:480px;min-height:80px}
+.specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:44px;border-top:1px solid var(--line)}
+.specs div{padding:22px 0;border-bottom:1px solid var(--line)}
+.specs small{display:block;color:var(--gold);font-size:11px;letter-spacing:.24em;text-transform:uppercase}
+.pack{background:radial-gradient(70% 70% at 50% 50%,#1d170a,transparent 75%)}
+#lid{transition:transform .9s cubic-bezier(.6,0,.2,1);transform-origin:260px 198px}#box.open #lid{transform:translate(0,-150px) rotate(-5deg)}#rg{transition:transform .9s .3s}#box.open #rg{transform:translateY(-14px)}.pack svg{width:100%;max-width:520px;display:block;margin:auto;filter:drop-shadow(0 30px 40px #000)}
+.mats{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.mats span{border:1px solid var(--line);padding:8px 16px;border-radius:30px;font-size:12px;letter-spacing:.1em;color:var(--gold2)}
+.buy{text-align:center;border:1px solid var(--line);background:linear-gradient(160deg,#15110a,#080807);border-radius:6px;margin:0 6vw 100px;padding:80px 5vw;max-width:1100px;margin-inline:auto}
+.sizes{display:flex;gap:10px;justify-content:center;margin:30px 0;flex-wrap:wrap}
+.sizes button{width:48px;height:48px;border-radius:50%;background:none;border:1px solid var(--line);color:var(--txt);cursor:pointer;font:400 15px Inter;transition:.25s}
+.sizes button.on,.sizes button:hover{border-color:var(--gold);background:#241c08;color:var(--gold2)}
+.price{font:500 44px 'Cormorant Garamond',serif;margin-bottom:6px}
+footer{border-top:1px solid var(--line);padding:50px 6vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;color:var(--mut);font-size:13px}
+#toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,120px);background:var(--gold);color:#000;padding:14px 26px;border-radius:3px;font-size:13px;letter-spacing:.08em;transition:.4s;z-index:30}
+#toast.show{transform:translate(-50%,0)}
+.rv{opacity:0;transform:translateY(28px);transition:1s}
+.rv.in{opacity:1;transform:none}
+@media(max-width:860px){nav ul{display:none}#hero{grid-template-columns:1fr}#stage{height:62vh;min-height:380px;order:-1;margin-top:60px}.hero-t{padding:10px 6vw 70px}.split{grid-template-columns:1fr;gap:40px}section{padding:80px 6vw}}
+@media(prefers-reduced-motion:reduce){.rv{transition:none}}
+</style>
+</head>
+<body>
+<nav><div class="logo gold">AU NOVUX</div>
+<ul><li><a href="#features">Features</a></li><li><a href="#health">Health</a></li><li><a href="#craft">Craft</a></li><li><a href="#unbox">Unboxing</a></li></ul>
+<a class="btn" href="#order" style="padding:10px 22px">Order</a></nav>
+
+<header id="hero">
+<div class="hero-t">
+<div class="eyebrow">The Aura Ring · Titanium &amp; Gold</div>
+<h1>Wear your <span class="gold">wellbeing.</span></h1>
+<p>Ultra-light titanium, a polished gold finish, and an intelligence that tracks your body, guides your day and pays for your coffee — all on one finger.</p>
+<a class="btn" href="#order">Reserve yours</a><a class="btn o" href="#features">Discover</a>
+<div class="stats"><div><b>3.4 g</b><span>Titanium</span></div><div><b>7 days</b><span>Battery</span></div><div><b>24/7</b><span>Biometrics</span></div></div>
+</div>
+<div id="stage"><div class="hint">Drag to rotate · Tap to spin</div></div>
+</header>
+
+<section id="features">
+<div class="eyebrow rv">Intelligence, refined</div>
+<h2 class="rv">Four powers. <span class="gold">One ring.</span></h2>
+<p class="lead rv">Everything a modern professional needs, hidden inside a piece of jewellery.</p>
+<div class="grid">
+<div class="card rv"><svg viewBox="0 0 48 48"><path d="M24 44S9 29 9 19a15 15 0 0130 0c0 10-15 25-15 25z"/><circle cx="24" cy="19" r="5"/></svg><h3>Precision GPS</h3><p>Track runs, rides and travel routes with pinpoint accuracy — and find your ring from the app, always.</p></div>
+<div class="card rv"><svg viewBox="0 0 48 48"><rect x="6" y="12" width="36" height="24" rx="4"/><path d="M18 18c4 4 4 8 0 12M24 15c6 6 6 12 0 18M30 12c8 8 8 16 0 24"/></svg><h3>NFC Payments</h3><p>Tap to pay, tap to enter. Contactless transactions with bank-grade encryption — no phone, no wallet.</p></div>
+<div class="card rv"><svg viewBox="0 0 48 48"><path d="M4 26h10l5-14 8 26 5-12h12"/></svg><h3>Health Monitoring</h3><p>Heart rate, sleep quality, stress and daily recovery, measured by interior sensors against your skin.</p></div>
+<div class="card rv"><svg viewBox="0 0 48 48"><path d="M10 16v16M16 12v24M32 12v24M38 16v16"/><rect x="21" y="16" width="6" height="16" rx="3"/></svg><h3>Haptic Alerts</h3><p>Discreet vibrations for calls, reminders and alerts. Stay in the moment, never miss the important.</p></div>
+</div></section>
+
+<section id="health" class="split">
+<div>
+<div class="eyebrow rv">Aura App</div>
+<h2 class="rv">Your body, <span class="gold">in focus.</span></h2>
+<p class="lead rv">Built for demanding schedules. The Aura app turns raw biometrics into clear daily guidance.</p>
+<div class="tabs" id="tabs"><button class="on" data-i="0">Recovery</button><button data-i="1">Sleep</button><button data-i="2">Stress</button><button data-i="3">Heart</button></div>
+<p id="tabtxt"></p>
+</div>
+<div class="phone rv"><div class="screen">
+<small>Good morning, Alex</small>
+<div class="ringc"><svg width="190" height="190" viewBox="0 0 190 190"><circle cx="95" cy="95" r="80" fill="none" stroke="#2a2418" stroke-width="10"/><circle id="arc" cx="95" cy="95" r="80" fill="none" stroke="url(#gg)" stroke-width="10" stroke-linecap="round" stroke-dasharray="503" stroke-dashoffset="90" transform="rotate(-90 95 95)" style="transition:1s"/><defs><linearGradient id="gg"><stop offset="0" stop-color="#9c7a1f"/><stop offset="1" stop-color="#f3dc8a"/></linearGradient></defs><text id="big" x="95" y="100" text-anchor="middle" fill="#f3dc8a" font-family="Cormorant Garamond,serif" font-size="52">82</text><text id="cap" x="95" y="124" text-anchor="middle" fill="#9b927e" font-size="11" letter-spacing="3">RECOVERY</text></svg></div>
+<svg viewBox="0 0 260 70" width="100%" style="margin-bottom:14px"><path d="M0 40q15-30 30-10t30 0 30-25 30 25 30-5 30-15 30 20 50-10" fill="none" stroke="#d4af37" stroke-width="2"/><path d="M0 40q15-30 30-10t30 0 30-25 30 25 30-5 30-15 30 20 50-10V70H0z" fill="#d4af37" opacity=".1"/></svg>
+<div class="mini"><div><b>58</b><em>Resting BPM</em></div><div><b>7h 42m</b><em>Sleep</em></div><div><b>Low</b><em>Stress</em></div><div><b>8,420</b><em>Steps</em></div></div>
+</div></div>
+</section>
+
+<section id="craft">
+<div class="eyebrow rv">Craftsmanship</div>
+<h2 class="rv">Titanium strength. <span class="gold">Gold soul.</span></h2>
+<p class="lead rv">Machined from a single block of aerospace titanium, then finished by hand with a mirror-polished gold layer that resists scratches and sweat.</p>
+<div class="specs rv">
+<div><small>Material</small>Grade-5 titanium, polished gold finish</div><div><small>Weight</small>3.4 g</div><div><small>Sensors</small>Optical HR · Temp · Motion</div><div><small>Connectivity</small>GPS · NFC · Bluetooth LE</div><div><small>Battery</small>Up to 7 days</div><div><small>Water</small>100 m resistant</div>
+</div></section>
+
+<section id="unbox" class="pack">
+<div class="eyebrow rv">The unboxing</div>
+<h2 class="rv">A gift before <span class="gold">you open it.</span></h2>
+<svg viewBox="0 0 520 400" id="box" class="rv" aria-label="Black box with golden ribbon">
+<defs>
+<linearGradient id="gr" x1="0" x2="1"><stop offset="0" stop-color="#8a6a18"/><stop offset=".5" stop-color="#f3dc8a"/><stop offset="1" stop-color="#a98424"/></linearGradient>
+<linearGradient id="bk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2825"/><stop offset="1" stop-color="#0a0a0a"/></linearGradient>
+<linearGradient id="vl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a1018"/><stop offset="1" stop-color="#1a050b"/></linearGradient>
+</defs>
+<ellipse cx="260" cy="352" rx="190" ry="16" fill="#000" opacity=".7"/>
+<polygon points="124,192 396,192 384,126 136,126" fill="url(#vl)"/>
+<rect x="150" y="176" width="220" height="16" fill="#2a0a10"/>
+<g id="rg"><ellipse cx="260" cy="158" rx="28" ry="33" fill="none" stroke="url(#gr)" stroke-width="10"/><ellipse cx="260" cy="158" rx="22" ry="27" fill="none" stroke="#111" stroke-width="3"/></g>
+<rect x="110" y="190" width="300" height="156" rx="5" fill="url(#bk)" stroke="#3a2f18"/>
+<rect x="244" y="190" width="32" height="156" fill="url(#gr)"/>
+<text x="327" y="278" text-anchor="middle" fill="#d4af37" font-family="Cormorant Garamond,serif" font-size="17" letter-spacing="6">AU NOVUX</text>
+<text x="193" y="278" text-anchor="middle" fill="#6b5a30" font-family="Inter,sans-serif" font-size="9" letter-spacing="3">AURA RING</text>
+<g id="lid">
+<rect x="100" y="140" width="320" height="58" rx="5" fill="url(#bk)" stroke="#3a2f18"/>
+<rect x="100" y="140" width="320" height="4" fill="#4a3d1c"/>
+<rect x="244" y="140" width="32" height="58" fill="url(#gr)"/>
+<path d="M260 140C222 88 186 108 204 128C216 142 244 142 260 140Z" fill="url(#gr)" stroke="#6a5010"/>
+<path d="M260 140C298 88 334 108 316 128C304 142 276 142 260 140Z" fill="url(#gr)" stroke="#6a5010"/>
+<path d="M254 142L228 198L244 192L252 206Z" fill="url(#gr)" stroke="#6a5010"/>
+<path d="M266 142L292 198L276 192L268 206Z" fill="url(#gr)" stroke="#6a5010"/>
+<ellipse cx="260" cy="140" rx="11" ry="9" fill="#f3dc8a" stroke="#6a5010"/>
+</g>
+</svg>
+<div style="text-align:center;margin-top:26px"><button class="btn o" id="ob">Open the box</button></div>
+<div class="mats rv" style="justify-content:center"><span>Rigid greyboard</span><span>Plush velvet</span><span>Cushioned foam</span><span>Silk lining</span><span>Golden ribbon</span></div>
+</section>
+
+<div class="buy" id="order">
+<div class="eyebrow">Aura Ring · Limited first edition</div>
+<h2>Own the <span class="gold">Aura.</span></h2>
+<div class="price gold">$489</div><small style="color:var(--mut)">Free express shipping · 30-day trial · 1-year warranty</small>
+<div class="sizes" id="sizes"></div>
+<a class="btn" id="add">Add to bag · Size <span id="sz">8</span></a>
+</div>
+
+<footer><div class="logo gold">AU NOVUX</div><div>© 2026 AU NOVUX. Crafted for the extraordinary.</div><div>Support · Privacy · Warranty</div></footer>
+<div id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+var el=document.getElementById('stage');
+try{
+var R=new THREE.WebGLRenderer({antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));el.prepend(R.domElement);
+var S=new THREE.Scene(),C=new THREE.PerspectiveCamera(35,1,.1,50);C.position.set(0,0,6.2);
+var c=document.createElement('canvas');c.width=512;c.height=256;var x=c.getContext('2d');
+var g=x.createLinearGradient(0,0,0,256);g.addColorStop(0,'#fff6d8');g.addColorStop(.45,'#3a2d10');g.addColorStop(.55,'#0a0806');g.addColorStop(1,'#6b5320');x.fillStyle=g;x.fillRect(0,0,512,256);
+x.fillStyle='#fff';[[60,40,90,30],[250,20,60,60],[400,60,80,24]].forEach(function(r){x.fillRect(r[0],r[1],r[2],r[3])});
+var env=new THREE.CanvasTexture(c);env.mapping=THREE.EquirectangularReflectionMapping;
+var gold=new THREE.MeshStandardMaterial({color:0xd9b44a,metalness:1,roughness:.16,envMap:env,envMapIntensity:1.5});
+var ring=new THREE.Group();
+var o=new THREE.Mesh(new THREE.TorusGeometry(1.25,.2,64,160),gold);o.scale.z=2.4;ring.add(o);
+var inner=new THREE.Mesh(new THREE.CylinderGeometry(1.06,1.06,.78,96,1,true),new THREE.MeshStandardMaterial({color:0x14110d,metalness:.6,roughness:.4,side:THREE.DoubleSide,envMap:env}));inner.rotation.x=Math.PI/2;ring.add(inner);
+var gm=new THREE.MeshBasicMaterial({color:0x7dffb0});
+[-.5,-.3,-.1].forEach(function(a,i){var s=new THREE.Mesh(new THREE.SphereGeometry(.05,16,16),gm);var t=Math.PI*1.5+a;s.position.set(Math.cos(t)*1.05,Math.sin(t)*1.05,(i-1)*.18);ring.add(s)});
+var e=new THREE.Mesh(new THREE.TorusGeometry(1.25,.012,8,160),new THREE.MeshBasicMaterial({color:0xffe9a0}));e.position.z=.46;ring.add(e);var e2=e.clone();e2.position.z=-.46;ring.add(e2);
+S.add(ring);ring.rotation.set(.9,.5,0);
+var pg=new THREE.BufferGeometry(),pa=[];for(var i=0;i<160;i++)pa.push((Math.random()-.5)*10,(Math.random()-.5)*7,(Math.random()-.5)*6-2);
+pg.setAttribute('position',new THREE.Float32BufferAttribute(pa,3));var pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0xd4af37,size:.03,transparent:true,opacity:.7}));S.add(pts);
+S.add(new THREE.AmbientLight(0xffffff,.4));var L=new THREE.PointLight(0xfff0c0,1.2);L.position.set(3,3,5);S.add(L);
+function rs(){var w=el.clientWidth,h=el.clientHeight;R.setSize(w,h);C.aspect=w/h;C.position.z=w/h<1?8.4:6.2;C.updateProjectionMatrix()}rs();addEventListener('resize',rs);
+var vx=.004,vy=.002,d=false,lx=0,ly=0,mv=0;
+el.addEventListener('pointerdown',function(ev){d=true;lx=ev.clientX;ly=ev.clientY;mv=0});
+addEventListener('pointerup',function(){if(d&&mv<6){vx=.12}d=false});
+addEventListener('pointermove',function(ev){if(!d)return;var dx=ev.clientX-lx,dy=ev.clientY-ly;lx=ev.clientX;ly=ev.clientY;mv+=Math.abs(dx)+Math.abs(dy);vx=dx*.008;vy=dy*.008;ring.rotation.y+=vx;ring.rotation.x+=vy});
+var rm=matchMedia('(prefers-reduced-motion:reduce)').matches,t0=0;
+(function loop(t){requestAnimationFrame(loop);if(!d){ring.rotation.y+=vx;ring.rotation.x+=vy;vx+=(.004-vx)*.03;vy+=(0-vy)*.04}
+if(rm){vx=0;vy=0}ring.position.y=Math.sin(t*.0012)*.08;pts.rotation.y=t*.00008;R.render(S,C)})(0);
+}catch(err){el.insertAdjacentHTML('beforeend','<div style="position:absolute;inset:0;display:grid;place-items:center;font:500 80px Cormorant Garamond,serif;color:#d4af37">AU</div>')}
+})();
+var T=[['82','RECOVERY',90,'Know when to push and when to rest. A daily readiness score blends HRV, resting heart rate and sleep so every meeting and workout lands at your best.'],['7h42','SLEEP',110,'Deep, light and REM stages mapped each night, with a sleep score and a gentle wake-up buzz at your optimal moment.'],['Low','STRESS',360,'Continuous stress readings flag tense moments. Get a haptic nudge and a guided breathing session before the next big call.'],['58','BPM',300,'24/7 heart rate with resting trends, workout zones and alerts for unusual spikes, measured at the finger for clean data.']];
+var tb=document.querySelectorAll('#tabs button');
+function setT(i){tb.forEach(function(b,j){b.classList.toggle('on',i==j)});document.getElementById('big').textContent=T[i][0];document.getElementById('cap').textContent=T[i][1];document.getElementById('arc').setAttribute('stroke-dashoffset',T[i][2]);document.getElementById('tabtxt').textContent=T[i][3]}
+tb.forEach(function(b){b.onclick=function(){setT(+b.dataset.i)}});setT(0);
+var sz=document.getElementById('sizes'),cur=8;
+for(var s=6;s<=13;s++){(function(s){var b=document.createElement('button');b.textContent=s;if(s==cur)b.className='on';b.onclick=function(){cur=s;document.getElementById('sz').textContent=s;[].forEach.call(sz.children,function(k){k.classList.toggle('on',k===b)})};sz.appendChild(b)})(s)}
+document.getElementById('add').onclick=function(){var t=document.getElementById('toast');t.textContent='Aura Ring (size '+cur+') added to your bag';t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2600)};
+document.getElementById('ob').onclick=function(){var b=document.getElementById('box');b.classList.toggle('open');this.textContent=b.classList.contains('open')?'Close the box':'Open the box'};
+var io=new IntersectionObserver(function(a){a.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(n){io.observe(n)});
+</script>
+</body>
+</html>
